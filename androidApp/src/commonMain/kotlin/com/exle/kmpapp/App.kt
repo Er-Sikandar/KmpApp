@@ -14,10 +14,8 @@ import androidx.compose.runtime.*
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import org.jetbrains.compose.resources.painterResource
-import org.jetbrains.compose.ui.tooling.preview.Preview
-
-import kmpapp.composeapp.generated.resources.Res
-import kmpapp.composeapp.generated.resources.compose_multiplatform
+import kmpapp.androidapp.generated.resources.Res
+import kmpapp.androidapp.generated.resources.compose_multiplatform
 
 @Composable
 fun App() {
