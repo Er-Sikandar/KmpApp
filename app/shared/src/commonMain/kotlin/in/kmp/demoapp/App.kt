@@ -18,6 +18,7 @@ import org.jetbrains.compose.resources.painterResource
 
 import kmpdemoapp.app.shared.generated.resources.Res
 import kmpdemoapp.app.shared.generated.resources.compose_multiplatform
+import org.jetbrains.compose.resources.stringResource
 
 @Composable
 @Preview
@@ -36,6 +37,7 @@ fun App() {
                     horizontalAlignment = Alignment.CenterHorizontally) {
                     Image(painterResource(Res.drawable.compose_multiplatform), null)
                     Text("Compose: $greeting")
+                    Text("Compose: Ok")
                 }
             }
         }
