@@ -43,16 +43,12 @@ fun KmpNavGraph( navController: NavHostController) {
             })
         }
         composable(Screen.SignUp.route) {
-            SignUpScreen(navLogin = {
-                navController.navigate(Screen.Login.route) {
-                    popUpTo(navController.graph.startDestinationId) {
-                        inclusive = true
-                    }
-                }
+            SignUpScreen( onBack= {
+                navController.popBackStack()
             })
         }
         composable(Screen.Home.route) {
-            HomeScreen(navHomeToWeb = {url, type ->
+            HomeScreen(navHomeToWeb = { url, type ->
 
                  },
                 navHomeToLogin = {

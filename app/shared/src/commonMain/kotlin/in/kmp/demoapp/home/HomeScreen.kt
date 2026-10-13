@@ -8,6 +8,7 @@ import androidx.compose.material3.*
 import androidx.compose.runtime.*
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
+import androidx.navigation.compose.rememberNavController
 import `in`.kmp.demoapp.theme.lightPrimary
 import kotlinx.coroutines.CoroutineScope
 import kotlinx.coroutines.delay
@@ -21,6 +22,7 @@ fun HomeScreen(navHomeToWeb: (String, Int) -> Unit,
                navHomeToNoty: () -> Unit,
                onExitApp: () -> Unit){
     val coroutineScope: CoroutineScope = rememberCoroutineScope()
+    val navController = rememberNavController()
     var doubleBackToExitPressedOnce by remember { mutableStateOf(false) }
     val topBarText = remember { mutableStateOf("New JetPack App") }
 

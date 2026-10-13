@@ -7,9 +7,8 @@ import androidx.compose.ui.*
 import `in`.kmp.demoapp.theme.colorWhite
 
 @Composable
-fun SignUpScreen(navLogin:()-> Unit){
+fun SignUpScreen(onBack:()-> Unit){
     Scaffold { innerPadding ->
-
         Surface(modifier = Modifier.fillMaxSize().padding(innerPadding)) {
             Column(
                 modifier = Modifier.fillMaxSize(),
@@ -17,7 +16,7 @@ fun SignUpScreen(navLogin:()-> Unit){
                 verticalArrangement = Arrangement.Center
             ) {
              Button(onClick = {
-                 navLogin()
+                 onBack()
              }){
                  Text("Go Login", color = colorWhite)
              }

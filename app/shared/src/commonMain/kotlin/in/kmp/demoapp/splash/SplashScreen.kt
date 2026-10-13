@@ -5,14 +5,18 @@ import androidx.compose.animation.core.tween
 import androidx.compose.animation.fadeIn
 import androidx.compose.animation.fadeOut
 import androidx.compose.foundation.Image
+import androidx.compose.foundation.background
 import androidx.compose.foundation.layout.*
 import androidx.compose.material3.*
 import androidx.compose.runtime.Composable
 import androidx.compose.runtime.*
 import androidx.compose.ui.*
+import androidx.compose.ui.Modifier
 import androidx.compose.ui.tooling.preview.Preview
 import `in`.kmp.demoapp.App
 import `in`.kmp.demoapp.Greeting
+import `in`.kmp.demoapp.theme.accentColor
+import `in`.kmp.demoapp.theme.drawerHeaderColor
 import kmpdemoapp.app.shared.generated.resources.Res
 import kmpdemoapp.app.shared.generated.resources.compose_multiplatform
 import kotlinx.coroutines.delay
@@ -39,7 +43,7 @@ fun SplashScreen(navLogin: () -> Unit, navHome: () -> Unit){
             navLogin()
         }
     }
-    Scaffold { innerPadding ->
+    Scaffold(modifier = Modifier) { innerPadding ->
         Surface(modifier = Modifier.fillMaxSize().padding(innerPadding)) {
             Column(
                 modifier = Modifier.fillMaxSize(),
