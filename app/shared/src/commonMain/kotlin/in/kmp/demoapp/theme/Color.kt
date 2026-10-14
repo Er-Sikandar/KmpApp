@@ -14,6 +14,7 @@ val colorWhite = Color(0xffffffff)
 // Dashboard colors
 val dashboardBackgroundColor = Color(0xFF1D2123)
 val accentColor = Color(0xffFACD66)
+val redColor = Color(0xFFF50F0F)
 val textColor = Color(0xFFEFEEE0)
 val drawerHeaderColor = Color(0xFF673AB7)
 val profileImageBackgroundColor = Color.Gray

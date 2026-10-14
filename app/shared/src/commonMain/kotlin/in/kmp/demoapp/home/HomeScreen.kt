@@ -8,24 +8,54 @@ import androidx.compose.material3.*
 import androidx.compose.runtime.*
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
+import androidx.compose.ui.text.font.FontWeight
 import androidx.navigation.compose.rememberNavController
+import `in`.kmp.demoapp.theme.colorWhite
 import `in`.kmp.demoapp.theme.lightPrimary
+import `in`.kmp.demoapp.theme.redColor
 import kotlinx.coroutines.CoroutineScope
 import kotlinx.coroutines.delay
 import kotlinx.coroutines.launch
 import kotlin.time.Duration.Companion.microseconds
-
 
 @Composable
 fun HomeScreen(navHomeToWeb: (String, Int) -> Unit,
                navHomeToLogin: () -> Unit,
                navHomeToNoty: () -> Unit,
                onExitApp: () -> Unit){
+    //val context:Context = LocalContext.current
     val coroutineScope: CoroutineScope = rememberCoroutineScope()
     val navController = rememberNavController()
     var doubleBackToExitPressedOnce by remember { mutableStateOf(false) }
     val topBarText = remember { mutableStateOf("New JetPack App") }
+    var showLogoutDialog by remember { mutableStateOf(false) }
 
+    if (showLogoutDialog) {
+        AlertDialog(
+            onDismissRequest = { showLogoutDialog = false },
+            title = { Text("Logout", color = redColor, fontWeight = FontWeight.Medium) },
+            text = { Text("Are you sure you want to logout?") },
+            confirmButton = {
+                Button(onClick = {
+                    coroutineScope.launch {
+                        showLogoutDialog = false
+                        navHomeToLogin()
+                    }
+                }) {
+                    Text("Yes")
+                }
+            },
+            dismissButton = {
+                Button(onClick = {
+                    coroutineScope.launch {
+                        showLogoutDialog = false
+                    }
+                }) {
+                    Text("No")
+                }
+            }
+        )
+    }
 
     LaunchedEffect(doubleBackToExitPressedOnce) {
         if (doubleBackToExitPressedOnce) {
@@ -35,7 +65,7 @@ fun HomeScreen(navHomeToWeb: (String, Int) -> Unit,
             }
         }
     }
-    /*BackHandler {
+   /* BackHandler {
         if (doubleBackToExitPressedOnce) {
             onExitApp()
         } else {
@@ -85,7 +115,13 @@ fun HomeScreen(navHomeToWeb: (String, Int) -> Unit,
                 horizontalAlignment = Alignment.CenterHorizontally,
                 verticalArrangement = Arrangement.Center
             ) {
-
+                Button(onClick = {
+                    coroutineScope.launch {
+                        showLogoutDialog=true
+                    }
+                }){
+                    Text("Logout", color = colorWhite)
+                }
             }
         }
     }

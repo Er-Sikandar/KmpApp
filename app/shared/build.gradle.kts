@@ -49,6 +49,7 @@ kotlin {
     sourceSets {
         androidMain.dependencies {
             implementation(libs.compose.uiToolingPreview)
+            implementation(libs.androidx.activity.compose)
         }
         commonMain.dependencies {
             api(projects.core)
@@ -63,7 +64,6 @@ kotlin {
             implementation(libs.androidx.lifecycle.runtimeCompose)
             implementation(libs.navigation.compose)
             implementation(libs.material.icons.extended)
-            implementation(libs.androidx.activity.compose)
 
         }
         commonTest.dependencies {
@@ -74,9 +74,10 @@ kotlin {
         }
         jsMain.dependencies {
             implementation(libs.wrappers.browser)
-            with(libs) {
-                implementation(ktor.client.js)
-            }
+            implementation(libs.ktor.client.js)
+        }
+        wasmJsMain.dependencies {
+            implementation(libs.ktor.client.js)
         }
         iosMain.dependencies {
 
