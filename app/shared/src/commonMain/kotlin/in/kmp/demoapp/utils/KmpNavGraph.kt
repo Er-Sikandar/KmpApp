@@ -65,7 +65,7 @@ fun KmpNavGraph( navController: NavHostController) {
             })
         }
         composable(Screen.Noty.route) {
-            val nViewModel: NotyViewModel = viewModel()
+            val nViewModel: NotyViewModel = viewModel { NotyViewModel() }
             NotyScreen(onBack = {
                 navController.popBackStack()
             },

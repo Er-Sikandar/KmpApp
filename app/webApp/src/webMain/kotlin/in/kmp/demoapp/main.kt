@@ -4,9 +4,11 @@ import androidx.compose.ui.ExperimentalComposeUiApi
 import androidx.compose.ui.window.ComposeViewport
 
 /**
- * Error solve cmd:
+ * Error solve cmd Only Web(js):
+ * ./gradlew kotlinStoreYarnLock
  * ./gradlew kotlinUpgradeYarnLock
- * ./gradlew :app:shared:jsBrowserDevelopmentRun
+ * Error solve cmd Only Web(js):
+ * ./gradlew kotlinWasmStoreYarnLock
  *./gradlew kotlinWasmUpgradeYarnLock
  */
 

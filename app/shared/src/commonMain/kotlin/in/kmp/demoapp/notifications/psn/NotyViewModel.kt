@@ -6,6 +6,8 @@ import kotlinx.coroutines.flow.MutableStateFlow
 import kotlinx.coroutines.flow.asStateFlow
 
 class NotyViewModel : ViewModel(){
+    private val _isLoading = MutableStateFlow(false)
+    val isLoading = _isLoading.asStateFlow()
     private val _notyList = MutableStateFlow(emptyList<NotyModel>())
     val notyList = _notyList.asStateFlow()
 
@@ -14,6 +16,7 @@ class NotyViewModel : ViewModel(){
     }
 
     fun loadNoty() {
+        _isLoading.value=true
         _notyList.value = listOf(
             NotyModel("1", "Buy groceries", "Milk, eggs, bread"),
             NotyModel("2", "Team meeting", "Sprint planning at 11 AM"),
@@ -31,5 +34,6 @@ class NotyViewModel : ViewModel(){
             NotyModel("14", "Read", "Finish Clean Architecture chapter 5"),
             NotyModel("15", "Read", "Finish Clean Architecture chapter 5"),
         )
+        _isLoading.value=false
     }
 }

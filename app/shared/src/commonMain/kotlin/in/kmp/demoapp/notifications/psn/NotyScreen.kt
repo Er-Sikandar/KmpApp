@@ -15,8 +15,9 @@ import `in`.kmp.demoapp.kmp.KmpTopBar
 
 
 @Composable
-fun NotyScreen(onBack: () -> Unit, viewModel: NotyViewModel = viewModel()){
+fun NotyScreen(onBack: () -> Unit, viewModel: NotyViewModel = viewModel { NotyViewModel() }){
     val notyData by viewModel.notyList.collectAsState()
+    val isLoad by viewModel.isLoading.collectAsState()
 
     Scaffold(topBar = {
         KmpTopBar(
@@ -28,12 +29,35 @@ fun NotyScreen(onBack: () -> Unit, viewModel: NotyViewModel = viewModel()){
     }) {
         Surface(modifier = Modifier.fillMaxSize()) {
             Column(modifier = Modifier.fillMaxSize().padding(horizontal = 12.dp)) {
-                LazyColumn (modifier = Modifier.fillMaxWidth()){
-                    items(notyData) { noty ->
-                        Column(Modifier.padding(vertical = 5.dp)) {
-                            Text(noty.title ?: "N/A", style = MaterialTheme.typography.titleMedium)
-                            Text(noty.description ?: "N/A", style = MaterialTheme.typography.bodyMedium)
+                if (isLoad){
+                    Box(Modifier.fillMaxSize(), contentAlignment = Alignment.Center) {
+                        CircularProgressIndicator()
+                    }
+                }else {
+                    if (notyData.isNotEmpty()) {
+                        LazyColumn(modifier = Modifier.fillMaxWidth()) {
+                            items(notyData) { noty ->
+                                Column(Modifier.padding(vertical = 5.dp)) {
+                                    Text(
+                                        noty.title ?: "N/A",
+                                        style = MaterialTheme.typography.titleMedium
+                                    )
+                                    Text(
+                                        noty.description ?: "N/A",
+                                        style = MaterialTheme.typography.bodyMedium
+                                    )
+                                }
+                            }
                         }
+                    } else {
+                        Text(
+                            "No Data Found!",
+                            style = MaterialTheme.typography.titleMedium
+                        )
+                        Text(
+                            "<----------------->",
+                            style = MaterialTheme.typography.bodyMedium
+                        )
                     }
                 }
             }
