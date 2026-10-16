@@ -1,4 +1,4 @@
-package `in`.kmp.demoapp.home
+package `in`.kmp.demoapp.home.psn
 
 import androidx.compose.foundation.layout.*
 import androidx.compose.material.icons.Icons
@@ -19,7 +19,8 @@ import kotlinx.coroutines.launch
 import kotlin.time.Duration.Companion.microseconds
 
 @Composable
-fun HomeScreen(navHomeToWeb: (String, Int) -> Unit,
+fun HomeScreen(homeViewModel: HomeViewModel,
+    navHomeToWeb: (String, Int) -> Unit,
                navHomeToLogin: () -> Unit,
                navHomeToNoty: () -> Unit,
                onExitApp: () -> Unit){
@@ -29,6 +30,7 @@ fun HomeScreen(navHomeToWeb: (String, Int) -> Unit,
     var doubleBackToExitPressedOnce by remember { mutableStateOf(false) }
     val topBarText = remember { mutableStateOf("New JetPack App") }
     var showLogoutDialog by remember { mutableStateOf(false) }
+    val isAccess by homeViewModel.isAccess.collectAsState()
 
     if (showLogoutDialog) {
         AlertDialog(
@@ -120,7 +122,7 @@ fun HomeScreen(navHomeToWeb: (String, Int) -> Unit,
                         showLogoutDialog=true
                     }
                 }){
-                    Text("Logout", color = colorWhite)
+                    Text("Logout ${isAccess}", color = colorWhite)
                 }
             }
         }

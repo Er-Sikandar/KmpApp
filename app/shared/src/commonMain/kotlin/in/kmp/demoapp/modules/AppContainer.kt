@@ -1,7 +1,10 @@
 package `in`.kmp.demoapp.modules
 
 import androidx.compose.runtime.staticCompositionLocalOf
-import `in`.kmp.demoapp.networks.AuthApi
+import `in`.kmp.demoapp.home.data.HomeApi
+import `in`.kmp.demoapp.home.data.HomeRepositoryImpl
+import `in`.kmp.demoapp.home.domain.HomeRepository
+import `in`.kmp.demoapp.reglogin.data.AuthApi
 import `in`.kmp.demoapp.networks.LocalStorage
 import `in`.kmp.demoapp.networks.createHttpClient
 import `in`.kmp.demoapp.reglogin.data.AuthRepositoryImpl
@@ -23,5 +26,6 @@ class AuthModule(client: HttpClient) {
     val authRepo: AuthRepository by lazy { AuthRepositoryImpl(api) }
 }
 class HomeModule(client: HttpClient) {
-
+    private val api = HomeApi(client)
+    val homeRepo: HomeRepository by lazy { HomeRepositoryImpl(api) }
 }

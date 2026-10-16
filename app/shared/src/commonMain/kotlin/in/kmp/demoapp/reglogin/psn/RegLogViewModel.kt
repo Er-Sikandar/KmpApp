@@ -66,7 +66,9 @@ class RegLogViewModel(
             _state.update {
                 it.copy(isLoading = true, emailError = null, passwordError = null, error = null)
             }
-            when (val result = repo.login(lState.email, lState.password)) {
+            tokens.putBool(IS_LOGIN, true)
+            _state.update { it.copy(isLoading = false, isLoggedIn = true) }
+          /*  when (val result = repo.login(lState.email, lState.password)) {
                 is ApiResult.Success -> {
                     val token = result.data?.token
                     if (token.isNullOrBlank()) {
@@ -83,7 +85,7 @@ class RegLogViewModel(
                 is ApiResult.Error -> {
                     _state.update { it.copy(isLoading = false, error = result.message) }
                 }
-            }
+            }*/
         }
 
     }

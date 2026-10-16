@@ -6,7 +6,8 @@ import androidx.lifecycle.viewmodel.compose.viewModel
 import androidx.navigation.NavHostController
 import androidx.navigation.compose.NavHost
 import androidx.navigation.compose.composable
-import `in`.kmp.demoapp.home.HomeScreen
+import `in`.kmp.demoapp.home.psn.HomeScreen
+import `in`.kmp.demoapp.home.psn.HomeViewModel
 import `in`.kmp.demoapp.modules.LocalAppContainer
 import `in`.kmp.demoapp.notifications.psn.NotyScreen
 import `in`.kmp.demoapp.notifications.psn.NotyViewModel
@@ -40,7 +41,6 @@ fun KmpNavGraph( navController: NavHostController) {
         }
         composable(Screen.Login.route) {
             val vModel = viewModel { RegLogViewModel(container.authModule.authRepo, container.storage) }
-          //  val rViewModel: RegLogViewModel = viewModel { RegLogViewModel() }
             LoginScreen(navSignUp = { navController.navigate(Screen.SignUp.route) },
                 navHome = {
                     navController.navigate(Screen.Home.route) {
@@ -58,7 +58,9 @@ fun KmpNavGraph( navController: NavHostController) {
             }, vm= vModel)
         }
         composable(Screen.Home.route) {
-            HomeScreen(navHomeToWeb = { url, type ->
+            val vModel = viewModel { HomeViewModel(container.homeModule.homeRepo, container.storage) }
+            HomeScreen(homeViewModel = vModel,
+                navHomeToWeb = { url, type ->
 
                  },
                 navHomeToLogin = {

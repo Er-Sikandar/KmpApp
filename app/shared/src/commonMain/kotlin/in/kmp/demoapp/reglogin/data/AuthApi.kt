@@ -1,6 +1,7 @@
-package `in`.kmp.demoapp.networks
+package `in`.kmp.demoapp.reglogin.data
 
-import `in`.kmp.demoapp.reglogin.data.UserData
+import `in`.kmp.demoapp.networks.ApiResult
+import `in`.kmp.demoapp.networks.apiPostForm
 import io.ktor.client.HttpClient
 
 class AuthApi(private val client: HttpClient) {
