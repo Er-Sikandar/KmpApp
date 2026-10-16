@@ -21,8 +21,13 @@ kotlin {
     sourceSets {
         commonMain.dependencies {
             implementation(projects.app.shared)
-
             implementation(libs.compose.ui)
+        }
+        jsMain.dependencies {
+            implementation(libs.ktor.client.js)
+        }
+        wasmJsMain.dependencies {
+            implementation(libs.ktor.client.js)
         }
     }
 }

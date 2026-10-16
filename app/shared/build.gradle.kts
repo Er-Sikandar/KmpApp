@@ -6,6 +6,7 @@ plugins {
     alias(libs.plugins.androidMultiplatformLibrary)
     alias(libs.plugins.composeMultiplatform)
     alias(libs.plugins.composeCompiler)
+    alias(libs.plugins.kotlinSerialization)
 }
 
 kotlin {
@@ -47,10 +48,6 @@ kotlin {
     }
     
     sourceSets {
-        androidMain.dependencies {
-            implementation(libs.compose.uiToolingPreview)
-            implementation(libs.androidx.activity.compose)
-        }
         commonMain.dependencies {
             api(projects.core)
             implementation(libs.compose.runtime)
@@ -60,10 +57,19 @@ kotlin {
             implementation(libs.compose.components.resources)
             implementation(libs.compose.uiToolingPreview)
 
+            implementation(libs.navigation.compose)
+
+            implementation(libs.material.icons.extended)
+
             implementation(libs.androidx.lifecycle.viewmodelCompose)
             implementation(libs.androidx.lifecycle.runtimeCompose)
-            implementation(libs.navigation.compose)
-            implementation(libs.material.icons.extended)
+
+            implementation(libs.ktor.client.core)
+            implementation(libs.ktor.client.content.negotiation)
+            implementation(libs.ktor.serialization.json)
+            implementation(libs.ktor.client.logging)
+            implementation(libs.ktor.client.auth)
+            implementation(libs.kotlinx.serialization.json)
 
         }
         commonTest.dependencies {
@@ -72,16 +78,26 @@ kotlin {
             implementation("io.ktor:ktor-client-mock:${libs.versions.ktor.get()}")
             implementation(libs.assertk)
         }
-        jsMain.dependencies {
-            implementation(libs.wrappers.browser)
-            implementation(libs.ktor.client.js)
-        }
-        wasmJsMain.dependencies {
-            implementation(libs.ktor.client.js)
+        androidMain.dependencies {
+            // All Libs Added Base in build.gradle
         }
         iosMain.dependencies {
+            // For Sharing common API code across Android and iOS
+            api(libs.ktor.client.darwin)
 
         }
+        jvmMain.dependencies {
+            // Desktop All Libs Added Base in build.gradle
+        }
+        jsMain.dependencies {
+            // Used for Browser JavaScript engine
+            implementation(libs.wrappers.browser)
+            // if web lib not working then need to move in base gradle
+        }
+        wasmJsMain.dependencies {
+            // Used for Browser WebAssembly runtime & nothing needes access jsMain
+        }
+
     }
 }
 

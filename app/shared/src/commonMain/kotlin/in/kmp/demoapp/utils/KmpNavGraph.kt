@@ -1,20 +1,25 @@
 package `in`.kmp.demoapp.utils
 
 import androidx.compose.runtime.Composable
+import androidx.compose.ui.platform.LocalUriHandler
 import androidx.lifecycle.viewmodel.compose.viewModel
 import androidx.navigation.NavHostController
 import androidx.navigation.compose.NavHost
 import androidx.navigation.compose.composable
 import `in`.kmp.demoapp.home.HomeScreen
+import `in`.kmp.demoapp.modules.LocalAppContainer
 import `in`.kmp.demoapp.notifications.psn.NotyScreen
 import `in`.kmp.demoapp.notifications.psn.NotyViewModel
-import `in`.kmp.demoapp.reglogin.LoginScreen
-import `in`.kmp.demoapp.reglogin.SignUpScreen
+import `in`.kmp.demoapp.reglogin.psn.LoginScreen
+import `in`.kmp.demoapp.reglogin.psn.RegLogViewModel
+import `in`.kmp.demoapp.reglogin.psn.SignUpScreen
 import `in`.kmp.demoapp.splash.SplashScreen
 
 
 @Composable
 fun KmpNavGraph( navController: NavHostController) {
+    val container = LocalAppContainer.current
+    val context = LocalUriHandler.current
     NavHost(
         navController = navController,
         startDestination = Screen.Splash.route
@@ -34,18 +39,23 @@ fun KmpNavGraph( navController: NavHostController) {
             })
         }
         composable(Screen.Login.route) {
+            val vModel = viewModel { RegLogViewModel(container.authModule.authRepo, container.storage) }
+          //  val rViewModel: RegLogViewModel = viewModel { RegLogViewModel() }
             LoginScreen(navSignUp = { navController.navigate(Screen.SignUp.route) },
                 navHome = {
                     navController.navigate(Screen.Home.route) {
                         popUpTo(Screen.Login.route) { inclusive = true }
                         launchSingleTop = true
                     }
-            })
+            },
+                vm=vModel
+            )
         }
         composable(Screen.SignUp.route) {
+            val vModel = viewModel { RegLogViewModel(container.authModule.authRepo, container.storage) }
             SignUpScreen( onBack= {
                 navController.popBackStack()
-            })
+            }, vm= vModel)
         }
         composable(Screen.Home.route) {
             HomeScreen(navHomeToWeb = { url, type ->

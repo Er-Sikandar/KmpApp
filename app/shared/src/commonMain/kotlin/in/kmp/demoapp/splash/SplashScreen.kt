@@ -15,8 +15,10 @@ import androidx.compose.ui.Modifier
 import androidx.compose.ui.tooling.preview.Preview
 import `in`.kmp.demoapp.App
 import `in`.kmp.demoapp.Greeting
+import `in`.kmp.demoapp.modules.LocalAppContainer
 import `in`.kmp.demoapp.theme.accentColor
 import `in`.kmp.demoapp.theme.drawerHeaderColor
+import `in`.kmp.demoapp.utils.Const.IS_LOGIN
 import kmpdemoapp.app.shared.generated.resources.Res
 import kmpdemoapp.app.shared.generated.resources.compose_multiplatform
 import kotlinx.coroutines.delay
@@ -37,11 +39,17 @@ fun SplashScreenPreview() {
 fun SplashScreen(navLogin: () -> Unit, navHome: () -> Unit){
     var showContent by remember { mutableStateOf(true) }
     val coroutineScope = rememberCoroutineScope()
-    LaunchedEffect(Unit){
+    val storage = LocalAppContainer.current.storage
+
+    LaunchedEffect(Unit) {
         coroutineScope.launch {
             delay(3000.milliseconds)
-            navLogin()
+            val loggedIn = storage.getBool(IS_LOGIN)
+            if (loggedIn == true) navHome() else navLogin()
         }
+    }
+    LaunchedEffect(Unit){
+
     }
     Scaffold(modifier = Modifier) { innerPadding ->
         Surface(modifier = Modifier.fillMaxSize().padding(innerPadding)) {
