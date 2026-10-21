@@ -1,4 +1,4 @@
-package `in`.kmp.demoapp
+package `in`.kmp.demoapp.utils
 
 import android.app.Application
 import android.content.Context

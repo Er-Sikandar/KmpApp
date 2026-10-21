@@ -6,4 +6,5 @@ import `in`.kmp.demoapp.networks.ApiResult
 interface AuthRepository {
     suspend fun login(email: String, password: String): ApiResult<UserData?>
     suspend fun reg(name: String,mob:String,email: String, password: String): ApiResult<Boolean?>
+    suspend fun apiCheck(): ApiResult<Boolean?>
 }

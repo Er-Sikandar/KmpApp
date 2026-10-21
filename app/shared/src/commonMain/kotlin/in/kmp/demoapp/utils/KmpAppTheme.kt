@@ -1,10 +1,9 @@
-package `in`.kmp.demoapp
+package `in`.kmp.demoapp.utils
 
 import androidx.compose.foundation.shape.RoundedCornerShape
 import androidx.compose.material3.Shapes
 import androidx.compose.runtime.Composable
 import androidx.compose.ui.unit.dp
-import androidx.compose.ui.unit.sp
 
 @Composable
 internal fun KmpAppTheme(content: @Composable () -> Unit){

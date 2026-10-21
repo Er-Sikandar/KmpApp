@@ -1,9 +1,11 @@
 package `in`.kmp.demoapp
 
-class Greeting {
+class CmpMethod {
     private val platform = getPlatform()
 
     fun greet(): String {
         return sayHello(platform.name)
     }
+
+
 }

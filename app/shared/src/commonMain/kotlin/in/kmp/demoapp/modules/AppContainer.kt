@@ -9,10 +9,11 @@ import `in`.kmp.demoapp.networks.LocalStorage
 import `in`.kmp.demoapp.networks.createHttpClient
 import `in`.kmp.demoapp.reglogin.data.AuthRepositoryImpl
 import `in`.kmp.demoapp.reglogin.domain.AuthRepository
+import `in`.kmp.demoapp.utils.ToastManager
 import io.ktor.client.HttpClient
 import io.ktor.client.engine.HttpClientEngine
 
-class AppContainer(engine: HttpClientEngine, localStorage: LocalStorage) {
+class AppContainer(engine: HttpClientEngine, localStorage: LocalStorage,toast: ToastManager) {
     val storage = localStorage
     private val client = createHttpClient(engine, storage)
      val authModule = AuthModule(client)

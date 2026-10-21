@@ -1,7 +1,11 @@
 package `in`.kmp.demoapp.networks
 
+import `in`.kmp.demoapp.Platform
+import `in`.kmp.demoapp.getPlatform
 import `in`.kmp.demoapp.utils.Const.ACCESS
 import `in`.kmp.demoapp.utils.Const.BASE_URL
+import `in`.kmp.demoapp.utils.Const.DEVICE_TYPE
+import `in`.kmp.demoapp.utils.Const.PLATFORM
 import io.ktor.client.HttpClient
 import io.ktor.client.engine.HttpClientEngine
 import io.ktor.client.network.sockets.ConnectTimeoutException
@@ -38,7 +42,13 @@ import kotlinx.serialization.serializer
 fun createHttpClient(engine: HttpClientEngine, localStorage: LocalStorage) =
     HttpClient(engine) {
         install(ContentNegotiation) { json(appJson) }
-        defaultRequest { url(BASE_URL) }
+        defaultRequest {
+            url(BASE_URL)
+            headers {
+                append(DEVICE_TYPE, "1")
+                append(PLATFORM, getPlatform().name)
+            }
+        }
         install(Auth) {
             bearer {
                 loadTokens {
@@ -129,6 +139,15 @@ suspend inline fun <reified T> HttpClient.apiGet(
     path: String,
     noinline configure: HttpRequestBuilder.() -> Unit={}
 ): ApiResult<T> = callApi(serializer<T>(), HttpMethod.Get, path, configure)
+
+suspend inline fun <reified T> HttpClient.apiOnlyPost(
+    path: String,
+    noinline configure: HttpRequestBuilder.() -> Unit={}
+): ApiResult<T> = callApi(serializer<T>(), HttpMethod.Post, path){
+    contentType(ContentType.Application.FormUrlEncoded)
+    configure()
+}
+
 
 suspend inline fun <reified T> HttpClient.apiPostForm(
     path: String,

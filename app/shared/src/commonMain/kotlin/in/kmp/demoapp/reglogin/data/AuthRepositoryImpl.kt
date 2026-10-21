@@ -10,5 +10,7 @@ class AuthRepositoryImpl (private val api: AuthApi) : AuthRepository {
     override suspend fun reg(name: String,mob:String, email: String, password: String): ApiResult<Boolean?> =
         api.reg(mapOf("name" to name, "mobile" to mob, "email" to email, "password" to password)
         )
+    override suspend fun apiCheck(): ApiResult<Boolean?> =
+        api.apiCheck()
 
 }

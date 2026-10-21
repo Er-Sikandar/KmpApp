@@ -1,4 +1,4 @@
-package `in`.kmp.demoapp
+package `in`.kmp.demoapp.utils
 
 import `in`.kmp.demoapp.networks.LocalStorage
 import kotlinx.browser.localStorage

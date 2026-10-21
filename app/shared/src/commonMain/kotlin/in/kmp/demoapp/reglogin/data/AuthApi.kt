@@ -1,6 +1,8 @@
 package `in`.kmp.demoapp.reglogin.data
 
 import `in`.kmp.demoapp.networks.ApiResult
+import `in`.kmp.demoapp.networks.apiGet
+import `in`.kmp.demoapp.networks.apiOnlyPost
 import `in`.kmp.demoapp.networks.apiPostForm
 import io.ktor.client.HttpClient
 
@@ -11,5 +13,6 @@ class AuthApi(private val client: HttpClient) {
     suspend fun reg(paramPost: Map<String, String>): ApiResult<Boolean?> =
         client.apiPostForm("/auth/register", params =paramPost)
 
+    suspend fun apiCheck(): ApiResult<Boolean?> =client.apiOnlyPost("frontend/aboutus")
 
 }

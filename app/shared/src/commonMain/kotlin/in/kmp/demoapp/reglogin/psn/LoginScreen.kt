@@ -30,12 +30,16 @@ import `in`.kmp.demoapp.theme.colorWhite
 import `in`.kmp.demoapp.theme.lightPrimary
 import `in`.kmp.demoapp.theme.spacingLarge
 import `in`.kmp.demoapp.theme.spacingSmall
+import `in`.kmp.demoapp.utils.LocalToast
 
 @Composable
 fun LoginScreen(navSignUp: () -> Unit,navHome:()-> Unit, vm: RegLogViewModel){
     var showPassword by remember { mutableStateOf(false) }
     val state by vm.state.collectAsState()
     val currentNavHome by rememberUpdatedState(navHome)
+    val toast = LocalToast.current
+
+
     LaunchedEffect(state.isLoggedIn) {
         if (state.isLoggedIn) {
             vm.onLoginEvent(LoginEvent.IsLoginFalse)
@@ -106,7 +110,8 @@ fun LoginScreen(navSignUp: () -> Unit,navHome:()-> Unit, vm: RegLogViewModel){
                 }
                 Spacer(modifier = Modifier.height(spacingSmall))
                 Text("SignUp Here", color = lightPrimary, modifier = Modifier.padding(5.dp).clickable{
-                    navSignUp()
+                   // navSignUp()
+                    toast.show("SignUp Here..")
                 })
             }
         }
