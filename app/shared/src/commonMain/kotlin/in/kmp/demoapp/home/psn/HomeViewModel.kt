@@ -2,7 +2,7 @@ package `in`.kmp.demoapp.home.psn
 
 import androidx.lifecycle.ViewModel
 import `in`.kmp.demoapp.home.domain.HomeRepository
-import `in`.kmp.demoapp.networks.LocalStorage
+import `in`.kmp.demoapp.utils.LocalStorage
 import kotlinx.coroutines.flow.MutableStateFlow
 import kotlinx.coroutines.flow.asStateFlow
 

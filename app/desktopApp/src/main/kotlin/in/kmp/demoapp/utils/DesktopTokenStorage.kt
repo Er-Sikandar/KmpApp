@@ -1,6 +1,5 @@
 package `in`.kmp.demoapp.utils
 
-import `in`.kmp.demoapp.networks.LocalStorage
 import java.util.prefs.Preferences
 
 class DesktopTokenStorage : LocalStorage {

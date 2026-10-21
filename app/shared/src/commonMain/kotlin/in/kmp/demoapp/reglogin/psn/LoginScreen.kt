@@ -110,8 +110,8 @@ fun LoginScreen(navSignUp: () -> Unit,navHome:()-> Unit, vm: RegLogViewModel){
                 }
                 Spacer(modifier = Modifier.height(spacingSmall))
                 Text("SignUp Here", color = lightPrimary, modifier = Modifier.padding(5.dp).clickable{
-                   // navSignUp()
                     toast.show("SignUp Here..")
+                    navSignUp()
                 })
             }
         }

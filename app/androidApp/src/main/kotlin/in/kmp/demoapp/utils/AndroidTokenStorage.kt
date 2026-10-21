@@ -2,7 +2,6 @@ package `in`.kmp.demoapp.utils
 
 import android.content.Context
 import android.content.SharedPreferences
-import `in`.kmp.demoapp.networks.LocalStorage
 import androidx.core.content.edit
 
 class AndroidTokenStorage(ctx: Context) : LocalStorage {

@@ -1,11 +1,11 @@
 package `in`.kmp.demoapp.networks
 
-import `in`.kmp.demoapp.Platform
 import `in`.kmp.demoapp.getPlatform
 import `in`.kmp.demoapp.utils.Const.ACCESS
 import `in`.kmp.demoapp.utils.Const.BASE_URL
 import `in`.kmp.demoapp.utils.Const.DEVICE_TYPE
 import `in`.kmp.demoapp.utils.Const.PLATFORM
+import `in`.kmp.demoapp.utils.LocalStorage
 import io.ktor.client.HttpClient
 import io.ktor.client.engine.HttpClientEngine
 import io.ktor.client.network.sockets.ConnectTimeoutException

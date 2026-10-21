@@ -20,7 +20,6 @@ import `in`.kmp.demoapp.splash.SplashScreen
 @Composable
 fun KmpNavGraph( navController: NavHostController) {
     val container = LocalAppContainer.current
-    val context = LocalUriHandler.current
     NavHost(
         navController = navController,
         startDestination = Screen.Splash.route

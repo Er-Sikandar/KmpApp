@@ -2,7 +2,7 @@ package `in`.kmp.demoapp.reglogin.psn
 
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
-import `in`.kmp.demoapp.networks.LocalStorage
+import `in`.kmp.demoapp.utils.LocalStorage
 import `in`.kmp.demoapp.reglogin.domain.AuthRepository
 import `in`.kmp.demoapp.reglogin.domain.LoginEvent
 import `in`.kmp.demoapp.reglogin.domain.LoginUiState
@@ -10,7 +10,6 @@ import `in`.kmp.demoapp.reglogin.domain.RegEvent
 import `in`.kmp.demoapp.reglogin.domain.RegUiState
 import `in`.kmp.demoapp.utils.Validator
 import `in`.kmp.demoapp.networks.ApiResult
-import `in`.kmp.demoapp.utils.Const.ACCESS
 import `in`.kmp.demoapp.utils.Const.IS_LOGIN
 import kotlinx.coroutines.flow.MutableStateFlow
 import kotlinx.coroutines.flow.asStateFlow

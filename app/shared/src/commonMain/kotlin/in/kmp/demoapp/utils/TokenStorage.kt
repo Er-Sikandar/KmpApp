@@ -1,4 +1,4 @@
-package `in`.kmp.demoapp.networks
+package `in`.kmp.demoapp.utils
 
 interface LocalStorage {
     fun getString(key: String): String?

@@ -8,7 +8,7 @@ import dagger.hilt.android.qualifiers.ApplicationContext
 import dagger.hilt.components.SingletonComponent
 import `in`.kmp.demoapp.utils.AndroidTokenStorage
 import `in`.kmp.demoapp.modules.AppContainer
-import `in`.kmp.demoapp.networks.LocalStorage
+import `in`.kmp.demoapp.utils.LocalStorage
 import `in`.kmp.demoapp.utils.AndroidToastManager
 import `in`.kmp.demoapp.utils.ToastManager
 import io.ktor.client.engine.okhttp.OkHttp

@@ -5,7 +5,7 @@ import `in`.kmp.demoapp.home.data.HomeApi
 import `in`.kmp.demoapp.home.data.HomeRepositoryImpl
 import `in`.kmp.demoapp.home.domain.HomeRepository
 import `in`.kmp.demoapp.reglogin.data.AuthApi
-import `in`.kmp.demoapp.networks.LocalStorage
+import `in`.kmp.demoapp.utils.LocalStorage
 import `in`.kmp.demoapp.networks.createHttpClient
 import `in`.kmp.demoapp.reglogin.data.AuthRepositoryImpl
 import `in`.kmp.demoapp.reglogin.domain.AuthRepository

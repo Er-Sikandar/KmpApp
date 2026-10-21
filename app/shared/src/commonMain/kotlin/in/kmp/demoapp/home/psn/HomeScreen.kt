@@ -2,17 +2,22 @@ package `in`.kmp.demoapp.home.psn
 
 import androidx.compose.foundation.layout.*
 import androidx.compose.material.icons.Icons
+import androidx.compose.material.icons.filled.Info
 import androidx.compose.material.icons.filled.Menu
 import androidx.compose.material.icons.filled.Notifications
 import androidx.compose.material3.*
 import androidx.compose.runtime.*
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
+import androidx.compose.ui.platform.LocalUriHandler
 import androidx.compose.ui.text.font.FontWeight
 import androidx.navigation.compose.rememberNavController
+import `in`.kmp.demoapp.modules.LocalAppContainer
 import `in`.kmp.demoapp.theme.colorWhite
 import `in`.kmp.demoapp.theme.lightPrimary
 import `in`.kmp.demoapp.theme.redColor
+import `in`.kmp.demoapp.utils.Const.IS_LOGIN
+import `in`.kmp.demoapp.utils.LocalToast
 import kotlinx.coroutines.CoroutineScope
 import kotlinx.coroutines.delay
 import kotlinx.coroutines.launch
@@ -24,13 +29,15 @@ fun HomeScreen(homeViewModel: HomeViewModel,
                navHomeToLogin: () -> Unit,
                navHomeToNoty: () -> Unit,
                onExitApp: () -> Unit){
-    //val context:Context = LocalContext.current
     val coroutineScope: CoroutineScope = rememberCoroutineScope()
     val navController = rememberNavController()
     var doubleBackToExitPressedOnce by remember { mutableStateOf(false) }
     val topBarText = remember { mutableStateOf("New JetPack App") }
     var showLogoutDialog by remember { mutableStateOf(false) }
     val isAccess by homeViewModel.isAccess.collectAsState()
+    val storage = LocalAppContainer.current.storage
+    val uriHandler = LocalUriHandler.current
+    val toast = LocalToast.current
 
     if (showLogoutDialog) {
         AlertDialog(
@@ -40,6 +47,7 @@ fun HomeScreen(homeViewModel: HomeViewModel,
             confirmButton = {
                 Button(onClick = {
                     coroutineScope.launch {
+                        storage.putBool(IS_LOGIN,false)
                         showLogoutDialog = false
                         navHomeToLogin()
                     }
@@ -104,6 +112,20 @@ fun HomeScreen(homeViewModel: HomeViewModel,
                 }) {
                     Icon(
                         Icons.Filled.Notifications,
+                        tint = lightPrimary,
+                        contentDescription = null
+                    )
+                }
+                IconButton(onClick = {
+                    val safeUrl = "https://translate.google.com/?sl=en&tl=hi&op=translate"
+                    try {
+                        uriHandler.openUri(safeUrl)
+                    } catch (e: Exception) {
+                        toast.show("Can't open link")
+                    }
+                }) {
+                    Icon(
+                        Icons.Filled.Info,
                         tint = lightPrimary,
                         contentDescription = null
                     )

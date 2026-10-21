@@ -1,6 +1,5 @@
 package `in`.kmp.demoapp.utils
 
-import `in`.kmp.demoapp.networks.LocalStorage
 import platform.Foundation.*
 
 class IosTokenStorage : LocalStorage {
