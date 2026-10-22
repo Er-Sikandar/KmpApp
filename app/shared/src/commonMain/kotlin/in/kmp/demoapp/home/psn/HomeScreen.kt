@@ -32,7 +32,7 @@ fun HomeScreen(homeViewModel: HomeViewModel,
     val coroutineScope: CoroutineScope = rememberCoroutineScope()
     val navController = rememberNavController()
     var doubleBackToExitPressedOnce by remember { mutableStateOf(false) }
-    val topBarText = remember { mutableStateOf("New JetPack App") }
+    val topBarText = remember { mutableStateOf("Kotlin MultiPlatform") }
     var showLogoutDialog by remember { mutableStateOf(false) }
     val isAccess by homeViewModel.isAccess.collectAsState()
     val storage = LocalAppContainer.current.storage
